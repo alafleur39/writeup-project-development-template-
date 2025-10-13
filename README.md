@@ -6,50 +6,59 @@
 
 | Field | Details |
 |-------|----------|
-| **Name** | _Your Full Name_ |
+| **Name** | _Andy Lafleur_ |
 | **Project** | AI Knowledge Management Agent |
-| **Role** | _e.g., Backend Developer / NLP Researcher / DevOps Engineer_ |
-| **Tool / Skill** | _e.g., LangChain, FastAPI, ChromaDB, Docker, etc._ |
-| **Date** | _DD Month YYYY (e.g., 11 October 2025)_ |
-| **Links / Sources** | [Official Docs](https://www.langchain.com/) · [GitHub Repo](https://github.com/hwchase17/langchain) · [YouTube Tutorial](https://www.youtube.com/) |
+| **Role** |  Backend Developer |
+| **Tool / Skill** |  FastAPI |
+| **Date** | 12 October 2025  |
+| **Links / Sources** | [Official Docs](https://fastapi.tiangolo.com/#recap) · [GitHub Repo](https://github.com/fastapi/fastapi) · [YouTube Tutorial](https://www.youtube.com/watch?v=iWS9ogMPOI0) |
 ---
 
 ## 1. Overview  
-Provide a concise explanation of what this tool or skill is.  
-- What problem does it solve?  
-- What is its main purpose or use case?  
-- Who typically uses it?
 
-> _Example:_  
-> **LangChain** is a framework designed to help developers build applications powered by large language models (LLMs). It simplifies tasks such as prompt management, data retrieval, and orchestration of AI workflows.
+> _Example:_ 
+> **FastApi** is a fast python web framework designed to make building APIs easier. It is intended for Restful apis.
 
 ---
 
 ## 2. Core Features & Capabilities  
-List and briefly describe the main features or components of the tool.
 
 > _Example:_  
-> - **Prompt Templates:** Reusable prompt structures for consistent LLM queries.  
-> - **Memory:** Enables context retention between user interactions.  
-> - **Agents:** Allow LLMs to decide dynamically which tools or actions to use.
+> - **Automatic request validation / parsing:** Using pydantic models, FastAPI makes sures you're data is correct, clean and safe before you're program uses it.  
+> - **Interactive API docs:** FastApi automatically generates documentation we can actually use and not just read. This will help us debug and make teamwork easier..  
+> - **Async Support and Concurrency:** Fast API can handle many tasks at once and supports asynchronous code this allows us to use server resources more efficiently.
+> - **High Performance and Simplicity:** Fast API is one of the best performing python frameworks on par with Node.js and Go and it is designed to be easy to use
 
 ---
 
-## 3. Role in Our Project  
-Explain how this tool contributes to or enhances the **AI Knowledge Management Agent** system.  
-- Which subsystem it affects (API, data, AI pipeline, etc.)  
-- Why it was chosen  
-- How it supports scalability, usability, or research goals  
+## 3. Role in Our Project    
+> FastAPI's role in our project can be used to set up a backend interface for our Ai agent. FastAPI can handle http requests, http routing and error logging.
+> FastAPI's concurrency allows the project to scale for more users as it can handle multiple tasks and requests.
+> An example of potential endpoints for our Ai knowledge Agent could be POST /query -> "Asks the agent a question" POST/ ingest ->Upload text/PDF/URL to store in the vector DB
 
-> _Example:_  
-> LangChain acts as the orchestration layer that connects our GPT-based reasoning model with ChromaDB (for memory storage) and FastAPI (for API exposure).
 
 ---
 
 ## 4. Installation / Setup Guide  
-Document how to install and configure this tool.  
-Include terminal commands, environment variables, or configuration steps.
-
+To install FastApi go into your virtual environment for python and type the following commands 
+Uvicorn is a fast lightweight python server used with FastAPI to run your Api server
 ```bash
 # Example setup
-pip install langchain openai chromadb
+pip install fastapi
+pip install uvicorn
+```
+The following is an example of how to create a FastApi Server:
+```python
+from fastapi import FastAPI #app/main.py
+
+app = FastAPI()
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+```
+To run the server:
+```bash
+uvicorn app.main:app --reload --port 8000
+
+
